@@ -3,19 +3,26 @@ from collections import defaultdict
 import operator
 import pprint
 
-def getRaceDict():
-    return {"Hispanic":0,"White":0,"Black":0,"Native":0,"Asian":0,"Pacific":0}
 
 def mk_int(s):
     return int(s) if s else 0
 
 def mk_float(s):
-    return float(s) if s else 0
+    try:
+        return float(s)
+    except ValueError:
+        return 0
+
 
 #Part 1
 def part1():
     #Make a dictionary of states and their race populations
-    stateDict = defaultdict(lambda: getRaceDict())
+    stateDict = defaultdict(lambda: {"Hispanic":0,
+                                     "White":0,
+                                     "Black":0,
+                                     "Native":0,
+                                     "Asian":0,
+                                     "Pacific":0})
     with open('acs2015_census_tract_data.csv') as f:
         next(f)
         for line in f:
@@ -26,6 +33,8 @@ def part1():
             stateDict[lineList[1]]["Native"] += (mk_int(lineList[3]) * mk_float(lineList[9]) / 100)           
             stateDict[lineList[1]]["Asian"] += (mk_int(lineList[3]) * mk_float(lineList[10]) / 100)           
             stateDict[lineList[1]]["Pacific"] += (mk_int(lineList[3]) * mk_float(lineList[11]) / 100)
+    
+    #Get rid of non-states
     stateDict.pop('District of Columbia')
     stateDict.pop('Puerto Rico')
 
@@ -95,11 +104,38 @@ def part1():
                             reverse=True)
     print("White: " + str(sortedWhite[0][0]))
 
+    print()
 
 
+def part2():
+    #Create a dict of the form {State}:[{Total population}, {Total unemployed}]
+    statePopUnemployed = defaultdict(lambda: [0,0])
+    with open('acs2015_census_tract_data.csv') as f:
+        next(f)
+        for line in f:
+            lineList = line.split(",")
+            statePopUnemployed[lineList[1]][0] += mk_int(lineList[3])
+            statePopUnemployed[lineList[1]][1] += ( mk_int(lineList[3]) 
+                                                    * mk_float(lineList[36]) 
+                                                    / 100)
+
+    #Get rid of non-states
+    statePopUnemployed.pop('District of Columbia')
+    statePopUnemployed.pop('Puerto Rico')
+
+    #Map to dict of the form {State}:{% unemployed}
+    for k,v in statePopUnemployed.items():
+        statePopUnemployed[k] = ( v[1] / v[0] )
+    
+    #Sort dict by % unemployed
+    
+    
+    pp = pprint.PrettyPrinter(indent=4)
+    pp.pprint(statePopUnemployed)
 
 
 
 #Run assignment
 print("Name: Noah Preszler\n")
-part1()
+# part1()
+part2()
