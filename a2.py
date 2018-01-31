@@ -57,7 +57,7 @@ def part1():
                             key=operator.itemgetter(1), 
                             reverse=True)
     print("Part 1:")
-    print("Asian: " + str(sortedAsian[0][0]))
+    print("\tAsian: " + str(sortedAsian[0][0]))
 
     #Black
     stateBlackProp = dict()
@@ -66,7 +66,7 @@ def part1():
     sortedBlack = sorted(stateBlackProp.items(), 
                             key=operator.itemgetter(1), 
                             reverse=True)
-    print("Black: " + str(sortedBlack[0][0]))
+    print("\tBlack: " + str(sortedBlack[0][0]))
 
     #Hispanic
     stateHispanicProp = dict()
@@ -75,7 +75,7 @@ def part1():
     sortedHispanic = sorted(stateHispanicProp.items(), 
                             key=operator.itemgetter(1), 
                             reverse=True)
-    print("Hispanic: " + str(sortedHispanic[0][0]))
+    print("\tHispanic: " + str(sortedHispanic[0][0]))
 
     #Native
     stateNativeProp = dict()
@@ -84,7 +84,7 @@ def part1():
     sortedNative = sorted(stateNativeProp.items(), 
                             key=operator.itemgetter(1), 
                             reverse=True)
-    print("Native: " + str(sortedNative[0][0]))
+    print("\tNative: " + str(sortedNative[0][0]))
 
     #Pacific
     statePacificProp = dict()
@@ -93,7 +93,7 @@ def part1():
     sortedPacific = sorted(statePacificProp.items(), 
                             key=operator.itemgetter(1), 
                             reverse=True)
-    print("Pacific: " + str(sortedPacific[0][0]))
+    print("\tPacific: " + str(sortedPacific[0][0]))
 
     #White
     stateWhiteProp = dict()
@@ -102,11 +102,11 @@ def part1():
     sortedWhite = sorted(stateWhiteProp.items(), 
                             key=operator.itemgetter(1), 
                             reverse=True)
-    print("White: " + str(sortedWhite[0][0]))
+    print("\tWhite: " + str(sortedWhite[0][0]))
 
     print()
 
-
+#Part 2
 def part2():
     #Create a dict of the form {State}:[{Total population}, {Total unemployed}]
     statePopUnemployed = defaultdict(lambda: [0,0])
@@ -132,14 +132,15 @@ def part2():
                                 key=operator.itemgetter(1), 
                                 reverse=True)
     print("Part 2:")
-    print("Highest unemployment: " + str(statePopUnemployed[0][0]))
+    print("\tHighest unemployment: " + str(statePopUnemployed[0][0]))
     
     #Sort list by % unemployed (A-Z)
     statePopUnemployed = sorted(statePopUnemployed, 
                                 key=operator.itemgetter(1))
-    print("Lowest unemployment: " + str(statePopUnemployed[0][0]))
+    print("\tLowest unemployment: " + str(statePopUnemployed[0][0]))
     print()
 
+#Part 3
 def part3():
     p3list = list()
     with open('acs2015_census_tract_data.csv') as f:
@@ -170,14 +171,27 @@ def part3():
                 p3list.append([tract, county, state, races])
     
     print("Part 3:")
-    pp = pprint.PrettyPrinter(indent=4)
-    pp.pprint(p3list)
-    
-    
+    for l in p3list:
+        print("\tCensus tract: " + l[0])
+        print("\tCounty: " + l[1])
+        print("\tState: " + l[2])
+        print("\tRaces: " + ', '.join(l[3]))
+        print()
 
 
+def part4():
+    print("dub")
+
+
+    
+    
 #Run assignment
 print("Name: Noah Preszler\n")
 # part1()
 # part2()
-part3()
+# part3()
+part4()
+
+
+# pp = pprint.PrettyPrinter(indent=4)
+# pp.pprint(p3list)
