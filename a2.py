@@ -221,15 +221,60 @@ def part4():
 
 #Part 5
 def part5():
-    print('booger')
+    p5list = list()
+    with open('acs2015_census_tract_data.csv') as f:
+        next(f)
+        for line in f:
+            lineList = line.split(",")
+
+            tract = lineList[0]
+            county = lineList[2]
+            state = lineList[1]
+
+            totalPop = mk_float(lineList[3])
+            women = mk_float(lineList[5])
+
+            hispanic = mk_float(lineList[6])
+            white = mk_float(lineList[7])
+            black = mk_float(lineList[8])
+            native = mk_float(lineList[9]) 
+            asian = mk_float(lineList[10])
+            pacific = mk_float(lineList[11])
+
+            countRacesOver15 = 0
+            if(hispanic >= 15): countRacesOver15 = countRacesOver15 + 1
+            if(white >= 15): countRacesOver15 = countRacesOver15 + 1
+            if(black >= 15): countRacesOver15 = countRacesOver15 + 1
+            if(native >= 15): countRacesOver15 = countRacesOver15 + 1
+            if(asian >= 15): countRacesOver15 = countRacesOver15 + 1
+            if(pacific >= 15): countRacesOver15 = countRacesOver15 + 1
+
+            if( countRacesOver15 >= 4 ):
+                races = list()
+                if(hispanic > 1): races.append("Hispanic") 
+                if(white > 1): races.append("White")
+                if(black > 1): races.append("Black") 
+                if(native > 1): races.append("Native")
+                if(asian > 1): races.append("Asian") 
+                if(pacific > 1): races.append("Pacific") 
+
+                p5list.append([tract, county, state, races])
+    
+    print("Part 5:")
+    for l in p5list:
+        print("\tCensus tract: " + l[0])
+        print("\tCounty: " + l[1])
+        print("\tState: " + l[2])
+        print("\tRaces: " + ', '.join(l[3]))
+        print()
     
     
 #Run assignment
 print("Name: Noah Preszler\n")
-# part1()
-# part2()
-# part3()
-# part4()
+part1()
+part2()
+part3()
+part4()
 part5()
 
 
