@@ -127,15 +127,24 @@ def part2():
     for k,v in statePopUnemployed.items():
         statePopUnemployed[k] = ( v[1] / v[0] )
     
-    #Sort dict by % unemployed
+    #Sort dict by % unemployed (Z-A)
+    statePopUnemployed = sorted(statePopUnemployed.items(), 
+                                key=operator.itemgetter(1), 
+                                reverse=True)
+    print("Part 2:")
+    print("Highest unemployment: " + str(statePopUnemployed[0][0]))
     
+    #Sort list by % unemployed (A-Z)
+    statePopUnemployed = sorted(statePopUnemployed, 
+                                key=operator.itemgetter(1))
+    print("Lowest unemployment: " + str(statePopUnemployed[0][0]))
+    print()
+
+def part3():
     
-    pp = pprint.PrettyPrinter(indent=4)
-    pp.pprint(statePopUnemployed)
-
-
 
 #Run assignment
 print("Name: Noah Preszler\n")
 # part1()
-part2()
+# part2()
+part3()
