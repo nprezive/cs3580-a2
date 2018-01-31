@@ -141,7 +141,40 @@ def part2():
     print()
 
 def part3():
+    p3list = list()
+    with open('acs2015_census_tract_data.csv') as f:
+        next(f)
+        for line in f:
+            lineList = line.split(",")
+            tract = lineList[0]
+            county = lineList[2]
+            state = lineList[1]
+            income = mk_float(lineList[13])
+            poverty = mk_float(lineList[17])
+            hispanic = mk_float(lineList[6])
+            white = mk_float(lineList[7])
+            black = mk_float(lineList[8])
+            native = mk_float(lineList[9]) 
+            asian = mk_float(lineList[10])
+            pacific = mk_float(lineList[11])
+
+            if(income >= 50000 and poverty > 50):
+                races = list()
+                if(hispanic > 1): races.append("Hispanic") 
+                if(white > 1): races.append("White")
+                if(black > 1): races.append("Black") 
+                if(native > 1): races.append("Native")
+                if(asian > 1): races.append("Asian") 
+                if(pacific > 1): races.append("Pacific") 
+
+                p3list.append([tract, county, state, races])
     
+    print("Part 3:")
+    pp = pprint.PrettyPrinter(indent=4)
+    pp.pprint(p3list)
+    
+    
+
 
 #Run assignment
 print("Name: Noah Preszler\n")
