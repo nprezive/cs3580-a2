@@ -170,8 +170,9 @@ def part3():
 
                 p3list.append([tract, county, state, races])
     
-    print("Part 3:")
-    for l in p3list:
+    print("Part 3: ({0} answers)".format(len(p3list)))
+    for i, l in enumerate(p3list):
+        print("\t#" + str(i+1))
         print("\tCensus tract: " + l[0])
         print("\tCounty: " + l[1])
         print("\tState: " + l[2])
@@ -211,8 +212,9 @@ def part4():
 
                 p4list.append([tract, county, state, races])
     
-    print("Part 4:")
-    for l in p4list:
+    print("Part 4: ({0} answers)".format(len(p4list)))
+    for i, l in enumerate(p4list):
+        print("\t#" + str(i+1))
         print("\tCensus tract: " + l[0])
         print("\tCounty: " + l[1])
         print("\tState: " + l[2])
@@ -260,8 +262,9 @@ def part5():
 
                 p5list.append([tract, county, state, races])
     
-    print("Part 5:")
-    for l in p5list:
+    print("Part 5 ({0} answers):".format(len(p5list)))
+    for i, l in enumerate(p5list):
+        print("\t#" + str(i+1))
         print("\tCensus tract: " + l[0])
         print("\tCounty: " + l[1])
         print("\tState: " + l[2])
