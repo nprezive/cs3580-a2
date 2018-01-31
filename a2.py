@@ -178,11 +178,50 @@ def part3():
         print("\tRaces: " + ', '.join(l[3]))
         print()
 
-
+#Part 4
 def part4():
-    print("dub")
+    p4list = list()
+    with open('acs2015_census_tract_data.csv') as f:
+        next(f)
+        for line in f:
+            lineList = line.split(",")
 
+            tract = lineList[0]
+            county = lineList[2]
+            state = lineList[1]
 
+            totalPop = mk_float(lineList[3])
+            women = mk_float(lineList[5])
+
+            hispanic = mk_float(lineList[6])
+            white = mk_float(lineList[7])
+            black = mk_float(lineList[8])
+            native = mk_float(lineList[9]) 
+            asian = mk_float(lineList[10])
+            pacific = mk_float(lineList[11])
+
+            if( totalPop >= 10000 and women/totalPop > 0.57 ):
+                races = list()
+                if(hispanic > 1): races.append("Hispanic") 
+                if(white > 1): races.append("White")
+                if(black > 1): races.append("Black") 
+                if(native > 1): races.append("Native")
+                if(asian > 1): races.append("Asian") 
+                if(pacific > 1): races.append("Pacific") 
+
+                p4list.append([tract, county, state, races])
+    
+    print("Part 4:")
+    for l in p4list:
+        print("\tCensus tract: " + l[0])
+        print("\tCounty: " + l[1])
+        print("\tState: " + l[2])
+        print("\tRaces: " + ', '.join(l[3]))
+        print()
+
+#Part 5
+def part5():
+    print('booger')
     
     
 #Run assignment
@@ -190,7 +229,8 @@ print("Name: Noah Preszler\n")
 # part1()
 # part2()
 # part3()
-part4()
+# part4()
+part5()
 
 
 # pp = pprint.PrettyPrinter(indent=4)
